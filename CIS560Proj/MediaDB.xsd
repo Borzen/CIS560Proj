@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MediaDB" targetNamespace="http://tempuri.org/MediaDB.xsd" xmlns:mstns="http://tempuri.org/MediaDB.xsd" xmlns="http://tempuri.org/MediaDB.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="DBcon" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DBcon (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CIS560Proj.Properties.Settings.GlobalReference.Default.DBcon" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MediaTableAdapter" GeneratorDataComponentClassName="MediaTableAdapter" Name="Media" UserDataComponentName="MediaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBcon (Settings)" DbObjectName="borzen.Media" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Media" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetMedia" GeneratorSourceName="Media" GetMethodModifier="Public" GetMethodName="GetMedia" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetMedia" UserSourceName="Media">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        mediaType, PK_title AS Title, PK_creator AS `Made By`, length, genre, `count`, isDigital
+FROM            Media</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="mediaType" DataSetColumn="mediaType" />
+              <Mapping SourceColumn="length" DataSetColumn="length" />
+              <Mapping SourceColumn="genre" DataSetColumn="genre" />
+              <Mapping SourceColumn="count" DataSetColumn="count" />
+              <Mapping SourceColumn="Title" DataSetColumn="Title" />
+              <Mapping SourceColumn="Made By" DataSetColumn="Made By" />
+              <Mapping SourceColumn="isDigital" DataSetColumn="isDigital" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BooksTableAdapter" GeneratorDataComponentClassName="BooksTableAdapter" Name="Books" UserDataComponentName="BooksTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBcon (Settings)" DbObjectName="borzen.Media" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Books" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetBooks" GeneratorSourceName="Books" GetMethodModifier="Public" GetMethodName="GetBooks" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetBooks" UserSourceName="Books">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        PK_title AS Title, PK_creator AS Author, length AS Pages, genre, `count`
+FROM            Media
+WHERE        (mediaType = 'Book')
+GROUP BY PK_title</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="genre" DataSetColumn="genre" />
+              <Mapping SourceColumn="count" DataSetColumn="count" />
+              <Mapping SourceColumn="Title" DataSetColumn="Title" />
+              <Mapping SourceColumn="Author" DataSetColumn="Author" />
+              <Mapping SourceColumn="Pages" DataSetColumn="Pages" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MoviesTableAdapter" GeneratorDataComponentClassName="MoviesTableAdapter" Name="Movies" UserDataComponentName="MoviesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBcon (Settings)" DbObjectName="borzen.Media" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Movies" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetMovies" GeneratorSourceName="Movies" GetMethodModifier="Public" GetMethodName="GetMovies" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetMovies" UserSourceName="Movies">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        PK_title AS Title, PK_creator AS Director, length AS `Run Time`, genre, `count`
+FROM            Media
+WHERE        (mediaType = 'Movie')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Title" DataSetColumn="Title" />
+              <Mapping SourceColumn="Director" DataSetColumn="Director" />
+              <Mapping SourceColumn="Run Time" DataSetColumn="Run Time" />
+              <Mapping SourceColumn="genre" DataSetColumn="genre" />
+              <Mapping SourceColumn="count" DataSetColumn="count" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GamesTableAdapter" GeneratorDataComponentClassName="GamesTableAdapter" Name="Games" UserDataComponentName="GamesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBcon (Settings)" DbObjectName="borzen.Media" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Games" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetGames" GeneratorSourceName="Games" GetMethodModifier="Public" GetMethodName="GetGames" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetGames" UserSourceName="Games">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        PK_title AS Title, PK_creator AS Maker, length AS `Avg Play Time`, genre, `count`
+FROM            Media
+WHERE        (mediaType = 'Game')
+GROUP BY PK_title</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Title" DataSetColumn="Title" />
+              <Mapping SourceColumn="Maker" DataSetColumn="Maker" />
+              <Mapping SourceColumn="Avg Play Time" DataSetColumn="Avg Play Time" />
+              <Mapping SourceColumn="genre" DataSetColumn="genre" />
+              <Mapping SourceColumn="count" DataSetColumn="count" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MusicTableAdapter" GeneratorDataComponentClassName="MusicTableAdapter" Name="Music" UserDataComponentName="MusicTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBcon (Settings)" DbObjectName="borzen.Media" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Music" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetMusic" GeneratorSourceName="Music" GetMethodModifier="Public" GetMethodName="GetMusic" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetMusic" UserSourceName="Music">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        PK_title AS Title, PK_creator AS Artist, length, genre, `count`
+FROM            Media
+WHERE        (mediaType = 'Music')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Title" DataSetColumn="Title" />
+              <Mapping SourceColumn="Artist" DataSetColumn="Artist" />
+              <Mapping SourceColumn="length" DataSetColumn="length" />
+              <Mapping SourceColumn="genre" DataSetColumn="genre" />
+              <Mapping SourceColumn="count" DataSetColumn="count" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DigitalMediaTableAdapter" GeneratorDataComponentClassName="DigitalMediaTableAdapter" Name="DigitalMedia" UserDataComponentName="DigitalMediaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBcon (Settings)" DbObjectName="borzen.Media" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Digital" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDigital" GeneratorSourceName="Digital" GetMethodModifier="Public" GetMethodName="GetDigital" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDigital" UserSourceName="Digital">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        mediaType, PK_title, PK_creator, `count`
+FROM            Media
+WHERE        (isDigital = 1)
+GROUP BY mediaType</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="mediaType" DataSetColumn="mediaType" />
+              <Mapping SourceColumn="PK_title" DataSetColumn="PK_title" />
+              <Mapping SourceColumn="PK_creator" DataSetColumn="PK_creator" />
+              <Mapping SourceColumn="count" DataSetColumn="count" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PhysicalMediaTableAdapter" GeneratorDataComponentClassName="PhysicalMediaTableAdapter" Name="PhysicalMedia" UserDataComponentName="PhysicalMediaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBcon (Settings)" DbObjectName="borzen.Media" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Physical" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetPhysical" GeneratorSourceName="Physical" GetMethodModifier="Public" GetMethodName="GetPhysical" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPhysical" UserSourceName="Physical">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        mediaType, PK_title, PK_creator, `count`
+FROM            Media
+WHERE        (isDigital = 0)
+GROUP BY mediaType</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="mediaType" DataSetColumn="mediaType" />
+              <Mapping SourceColumn="PK_title" DataSetColumn="PK_title" />
+              <Mapping SourceColumn="PK_creator" DataSetColumn="PK_creator" />
+              <Mapping SourceColumn="count" DataSetColumn="count" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MediaDB" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="MediaDB" msprop:Generator_UserDSName="MediaDB">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Media" msprop:Generator_TableClassName="MediaDataTable" msprop:Generator_TableVarName="tableMedia" msprop:Generator_TablePropName="Media" msprop:Generator_RowDeletingName="MediaRowDeleting" msprop:Generator_UserTableName="Media" msprop:Generator_RowChangingName="MediaRowChanging" msprop:Generator_RowEvHandlerName="MediaRowChangeEventHandler" msprop:Generator_RowDeletedName="MediaRowDeleted" msprop:Generator_RowEvArgName="MediaRowChangeEvent" msprop:Generator_RowChangedName="MediaRowChanged" msprop:Generator_RowClassName="MediaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="mediaType" msprop:Generator_ColumnVarNameInTable="columnmediaType" msprop:Generator_ColumnPropNameInRow="mediaType" msprop:Generator_ColumnPropNameInTable="mediaTypeColumn" msprop:Generator_UserColumnName="mediaType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="length" msprop:Generator_ColumnVarNameInTable="columnlength" msprop:Generator_ColumnPropNameInRow="length" msprop:Generator_ColumnPropNameInTable="lengthColumn" msprop:Generator_UserColumnName="length" type="xs:int" />
+              <xs:element name="genre" msprop:Generator_ColumnVarNameInTable="columngenre" msprop:Generator_ColumnPropNameInRow="genre" msprop:Generator_ColumnPropNameInTable="genreColumn" msprop:Generator_UserColumnName="genre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="count" msprop:Generator_ColumnVarNameInTable="columncount" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_UserColumnName="count" type="xs:int" />
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Made_x0020_By" msprop:Generator_ColumnVarNameInTable="columnMade_By" msprop:Generator_ColumnPropNameInRow="Made_By" msprop:Generator_ColumnPropNameInTable="Made_ByColumn" msprop:Generator_UserColumnName="Made By">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="isDigital" msprop:Generator_ColumnVarNameInTable="columnisDigital" msprop:Generator_ColumnPropNameInRow="isDigital" msprop:Generator_ColumnPropNameInTable="isDigitalColumn" msprop:Generator_UserColumnName="isDigital" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Books" msprop:Generator_TableClassName="BooksDataTable" msprop:Generator_TableVarName="tableBooks" msprop:Generator_TablePropName="Books" msprop:Generator_RowDeletingName="BooksRowDeleting" msprop:Generator_UserTableName="Books" msprop:Generator_RowChangingName="BooksRowChanging" msprop:Generator_RowEvHandlerName="BooksRowChangeEventHandler" msprop:Generator_RowDeletedName="BooksRowDeleted" msprop:Generator_RowEvArgName="BooksRowChangeEvent" msprop:Generator_RowChangedName="BooksRowChanged" msprop:Generator_RowClassName="BooksRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="genre" msprop:Generator_ColumnVarNameInTable="columngenre" msprop:Generator_ColumnPropNameInRow="genre" msprop:Generator_ColumnPropNameInTable="genreColumn" msprop:Generator_UserColumnName="genre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="count" msprop:Generator_ColumnVarNameInTable="columncount" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_UserColumnName="count" type="xs:int" />
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Author" msprop:Generator_ColumnVarNameInTable="columnAuthor" msprop:Generator_ColumnPropNameInRow="Author" msprop:Generator_ColumnPropNameInTable="AuthorColumn" msprop:Generator_UserColumnName="Author">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pages" msprop:Generator_ColumnVarNameInTable="columnPages" msprop:Generator_ColumnPropNameInRow="Pages" msprop:Generator_ColumnPropNameInTable="PagesColumn" msprop:Generator_UserColumnName="Pages" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Movies" msprop:Generator_TableClassName="MoviesDataTable" msprop:Generator_TableVarName="tableMovies" msprop:Generator_TablePropName="Movies" msprop:Generator_RowDeletingName="MoviesRowDeleting" msprop:Generator_UserTableName="Movies" msprop:Generator_RowChangingName="MoviesRowChanging" msprop:Generator_RowEvHandlerName="MoviesRowChangeEventHandler" msprop:Generator_RowDeletedName="MoviesRowDeleted" msprop:Generator_RowEvArgName="MoviesRowChangeEvent" msprop:Generator_RowChangedName="MoviesRowChanged" msprop:Generator_RowClassName="MoviesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Director" msprop:Generator_ColumnVarNameInTable="columnDirector" msprop:Generator_ColumnPropNameInRow="Director" msprop:Generator_ColumnPropNameInTable="DirectorColumn" msprop:Generator_UserColumnName="Director">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Run_x0020_Time" msprop:Generator_ColumnVarNameInTable="columnRun_Time" msprop:Generator_ColumnPropNameInRow="Run_Time" msprop:Generator_ColumnPropNameInTable="Run_TimeColumn" msprop:Generator_UserColumnName="Run Time" type="xs:int" />
+              <xs:element name="genre" msprop:Generator_ColumnVarNameInTable="columngenre" msprop:Generator_ColumnPropNameInRow="genre" msprop:Generator_ColumnPropNameInTable="genreColumn" msprop:Generator_UserColumnName="genre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="count" msprop:Generator_ColumnVarNameInTable="columncount" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_UserColumnName="count" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Games" msprop:Generator_TableClassName="GamesDataTable" msprop:Generator_TableVarName="tableGames" msprop:Generator_TablePropName="Games" msprop:Generator_RowDeletingName="GamesRowDeleting" msprop:Generator_UserTableName="Games" msprop:Generator_RowChangingName="GamesRowChanging" msprop:Generator_RowEvHandlerName="GamesRowChangeEventHandler" msprop:Generator_RowDeletedName="GamesRowDeleted" msprop:Generator_RowEvArgName="GamesRowChangeEvent" msprop:Generator_RowChangedName="GamesRowChanged" msprop:Generator_RowClassName="GamesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Maker" msprop:Generator_ColumnVarNameInTable="columnMaker" msprop:Generator_ColumnPropNameInRow="Maker" msprop:Generator_ColumnPropNameInTable="MakerColumn" msprop:Generator_UserColumnName="Maker">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Avg_x0020_Play_x0020_Time" msprop:Generator_ColumnVarNameInTable="columnAvg_Play_Time" msprop:Generator_ColumnPropNameInRow="Avg_Play_Time" msprop:Generator_ColumnPropNameInTable="Avg_Play_TimeColumn" msprop:Generator_UserColumnName="Avg Play Time" type="xs:int" />
+              <xs:element name="genre" msprop:Generator_ColumnVarNameInTable="columngenre" msprop:Generator_ColumnPropNameInRow="genre" msprop:Generator_ColumnPropNameInTable="genreColumn" msprop:Generator_UserColumnName="genre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="count" msprop:Generator_ColumnVarNameInTable="columncount" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_UserColumnName="count" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Music" msprop:Generator_TableClassName="MusicDataTable" msprop:Generator_TableVarName="tableMusic" msprop:Generator_TablePropName="Music" msprop:Generator_RowDeletingName="MusicRowDeleting" msprop:Generator_UserTableName="Music" msprop:Generator_RowChangingName="MusicRowChanging" msprop:Generator_RowEvHandlerName="MusicRowChangeEventHandler" msprop:Generator_RowDeletedName="MusicRowDeleted" msprop:Generator_RowEvArgName="MusicRowChangeEvent" msprop:Generator_RowChangedName="MusicRowChanged" msprop:Generator_RowClassName="MusicRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Artist" msprop:Generator_ColumnVarNameInTable="columnArtist" msprop:Generator_ColumnPropNameInRow="Artist" msprop:Generator_ColumnPropNameInTable="ArtistColumn" msprop:Generator_UserColumnName="Artist">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="length" msprop:Generator_ColumnVarNameInTable="columnlength" msprop:Generator_ColumnPropNameInRow="length" msprop:Generator_ColumnPropNameInTable="lengthColumn" msprop:Generator_UserColumnName="length" type="xs:int" />
+              <xs:element name="genre" msprop:Generator_ColumnVarNameInTable="columngenre" msprop:Generator_ColumnPropNameInRow="genre" msprop:Generator_ColumnPropNameInTable="genreColumn" msprop:Generator_UserColumnName="genre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="count" msprop:Generator_ColumnVarNameInTable="columncount" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_UserColumnName="count" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DigitalMedia" msprop:Generator_TableClassName="DigitalMediaDataTable" msprop:Generator_TableVarName="tableDigitalMedia" msprop:Generator_TablePropName="DigitalMedia" msprop:Generator_RowDeletingName="DigitalMediaRowDeleting" msprop:Generator_UserTableName="DigitalMedia" msprop:Generator_RowChangingName="DigitalMediaRowChanging" msprop:Generator_RowEvHandlerName="DigitalMediaRowChangeEventHandler" msprop:Generator_RowDeletedName="DigitalMediaRowDeleted" msprop:Generator_RowEvArgName="DigitalMediaRowChangeEvent" msprop:Generator_RowChangedName="DigitalMediaRowChanged" msprop:Generator_RowClassName="DigitalMediaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="mediaType" msprop:Generator_ColumnVarNameInTable="columnmediaType" msprop:Generator_ColumnPropNameInRow="mediaType" msprop:Generator_ColumnPropNameInTable="mediaTypeColumn" msprop:Generator_UserColumnName="mediaType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PK_title" msprop:Generator_ColumnVarNameInTable="columnPK_title" msprop:Generator_ColumnPropNameInRow="PK_title" msprop:Generator_ColumnPropNameInTable="PK_titleColumn" msprop:Generator_UserColumnName="PK_title">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PK_creator" msprop:Generator_ColumnVarNameInTable="columnPK_creator" msprop:Generator_ColumnPropNameInRow="PK_creator" msprop:Generator_ColumnPropNameInTable="PK_creatorColumn" msprop:Generator_UserColumnName="PK_creator">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="count" msprop:Generator_ColumnVarNameInTable="columncount" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_UserColumnName="count" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PhysicalMedia" msprop:Generator_TableClassName="PhysicalMediaDataTable" msprop:Generator_TableVarName="tablePhysicalMedia" msprop:Generator_TablePropName="PhysicalMedia" msprop:Generator_RowDeletingName="PhysicalMediaRowDeleting" msprop:Generator_UserTableName="PhysicalMedia" msprop:Generator_RowChangingName="PhysicalMediaRowChanging" msprop:Generator_RowEvHandlerName="PhysicalMediaRowChangeEventHandler" msprop:Generator_RowDeletedName="PhysicalMediaRowDeleted" msprop:Generator_RowEvArgName="PhysicalMediaRowChangeEvent" msprop:Generator_RowChangedName="PhysicalMediaRowChanged" msprop:Generator_RowClassName="PhysicalMediaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="mediaType" msprop:Generator_ColumnVarNameInTable="columnmediaType" msprop:Generator_ColumnPropNameInRow="mediaType" msprop:Generator_ColumnPropNameInTable="mediaTypeColumn" msprop:Generator_UserColumnName="mediaType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PK_title" msprop:Generator_ColumnVarNameInTable="columnPK_title" msprop:Generator_ColumnPropNameInRow="PK_title" msprop:Generator_ColumnPropNameInTable="PK_titleColumn" msprop:Generator_UserColumnName="PK_title">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PK_creator" msprop:Generator_ColumnVarNameInTable="columnPK_creator" msprop:Generator_ColumnPropNameInRow="PK_creator" msprop:Generator_ColumnPropNameInTable="PK_creatorColumn" msprop:Generator_UserColumnName="PK_creator">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="count" msprop:Generator_ColumnVarNameInTable="columncount" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_UserColumnName="count" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
